@@ -1,37 +1,53 @@
 #pragma once
 
 #include <string>
-#include <memory>
 #include <vector>
 
-namespace circular_buffer
+namespace R_BUFFER
 {
-    class Buffer
+    template <typename T, std::size_t size>
+    class Ring_buffer
     {
         private:
-            int size;
-            std::shared_ptr<std::vector<std::string>> Darray;
-            std::string temp_string;
+            std::size_t size;
+            std::vector<T> Darray;
+            //std::string temp_string;
 
-            int counter{0};
-            int last_pos{0};
-
-            bool write(std::string_view string_temp);
-            void clear_multiple(int num);
-            bool buffer_slot_empty(const int& temp_index);
-            int find_empty(int temp_pos);
+            std::size_t counter{0};
+            std::size_t last_pos{0};
         
         public:
-            std::string read(int index);
-            bool add(std::string_view temp_str);
-            void remove(int num_elements);
-            void over_ride_response(std::string_view temp_str);
-
-            Buffer(int num) : size(num) 
+            // element access function
+            std::size_t find_empty(std::size_t index);
+            // element access function
+            T at(std::size_t index)
             {
-                Darray = std::make_shared<std::vector<std::string>>(size);
+                return Darray[index];
             }
 
+            // modifier function
+            void pop_range(std::size_t num)
+            {
+                // 
+            };
+
+            // modifier function
+            // Clears the contents of the buffer
+            void clear()
+            {
+                Darray.clear();
+            }
+
+            // modifier function
+            bool erase(std::size_t temp_index);
+            // modifier function
+            bool append(std::string_view temp_str);
+            // modifier function
+            void pop_back(std::size_t num_elements);
+            // modifier function
+            void assign(std::size_t temp_str);
+
     };
+
 } // end of namespace
 
