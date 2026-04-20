@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
-#include "buffer.hpp"
+#include "r_buffer.hpp"
 
 namespace r_buffer
 {
-
+    /*
     void Ring_buffer::pop_range(int num)
     {
         if (num > size)
@@ -100,4 +100,5 @@ namespace r_buffer
         (*Darray)[over_ride_pos] = "";
         append(temp_str_view);
     }
+    */
 } // end of namespace
