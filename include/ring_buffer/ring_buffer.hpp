@@ -1,13 +1,28 @@
+/**
+ * @file ring_buffer.hpp
+ * @brief A fixed-capacity, wraparound buffer.
+ * 
+ * More information about the design rationale and implementation,
+ * as well as a general overview of ring buffer (cicurlar buffer) as
+ * a container, can be found in the project's README.
+ *
+ */
+
 #pragma once
 
 #include <array>
 
-/*
-* It is a buffer that automatically wraps to the beginning of the buffer once the buffer has reached its end.
-*/
-
 namespace ring_buffer
 {
+
+/**
+ * @brief A fixed-capacity, wraparound buffer.
+ *
+ * @tparam T Element type. Must be default-constructible, since it uses
+ *          (`std::array<T, N>`) internally to construct the elements
+ *          at compile time.
+ * @tparam SZ Fixed size of the ring buffer.
+ */
     template <typename T, std::size_t SZ>
     class ring_buffer
     {
